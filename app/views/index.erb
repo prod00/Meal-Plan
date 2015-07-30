@@ -1,11 +1,4 @@
-<h2>Users</h2>
-<% if @users %>
-  <% @users.each do |user| %>
-  <p><%= user.name %></p>
-  <% end %>
-<% else %>
-<h2>No users found</h2>
-<% end %>
+
 <h3>Sign In! </h3>
 <form action="/sign-in" method="POST">
   <p>Name: <input type="text" name="name"></p>
