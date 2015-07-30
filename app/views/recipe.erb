@@ -4,12 +4,20 @@
   <title>MEAL-PLAN</title>
  </head>
  <body>
-   <h1>MEAL PLAN</h1>
+   <h2>RECIPE FOR TONIGHT</h2>
+
+   <% @recipes.each do |recipe| %>
+   <p><%= recipe.name + " " %><%= recipe.key_ingrediants + " " %><%= recipe.link %></p>
+  <% end %>
+
+   <a href="/recipe">SKIP RECIPE</a>
+   
+   <h1>ADD RECIPE</h1>
    
    <form action='/recipe' method='POST'>
-     <input type="text" name="name" value="name">
-     <input type="text" name="ingredients" value="ingredients">
-     <input type="text" name="link" value="link">
+     <input type="text" name="name" placeholder="Name">
+     <input type="text" name="key_ingrediants" placeholder="Ingredients">
+     <input type="text" name="link" placeholder="Link">
      <input type="submit" value="Submit">
    </form>
    

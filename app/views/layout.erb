@@ -1,12 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
- <head> 
-  <title>MEAL PLAN</title>
- </head>
- <body>
-   <h1>MEAL PLAN</h1>
+  <head>
+    <title>MEAL PLAN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  </head>
+  <body> 
+    <div class="container">
+      <% if signed_in? %>
+        <p><%=current_user.name %> | <a href="/sign-out">SIGN OUT</a></p>
+      <% elsif !signed_in? && !@signin_page %>
+        <a href="/">Sign In</a>
+      <% end %>
+      
 
-   <%= yield %>
-  
- </body>
+      <%= yield %>
+
+    </div>
+    
+<!--     <div class="footer">
+      <h4><a href="/tweet">ADD RECIPE</a> | <a href="/users">BACK</a></h4>
+    </div> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>
