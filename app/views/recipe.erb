@@ -5,11 +5,13 @@
  </head>
  <body>
    <h2>RECIPE FOR TONIGHT</h2>
-   <% @recipes.each do |recipe| %>
-     <p><strong>Food:</strong> <%= recipe.name %></p>
-     <p><strong>Ingredients:</strong> <%= recipe.key_ingrediants %></p>
-     <p><strong>Website:</strong> <%= recipe.link %></p><br>
-   <% end %>
+  
+
+   <p>Recipe name: <%= @recipes.sample.name %></p>
+   <p>Key ingredients: <%= @recipes.sample.key_ingrediants %></p>
+   <p>Link: <%= @recipes.sample.link %></p>
+
+
 
    <a href="/recipe">SKIP RECIPE</a>
    
