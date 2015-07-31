@@ -11,30 +11,36 @@ class ApplicationController < Sinatra::Base
      enable :sessions
      set :session_secret, 'flatiron'
    end
+  
    helpers do
      def signed_in?
       session[:user_id]
      end
+     
      def current_user
-      current_user = User.find_by(session[:user_id])
+      current_user = User.find(session[:user_id])
      end
+     
   end
   
     get '/' do
-#     @recipes = Recipe.all
-#       @users = User.all
+      @recipes = Recipe.all
+      @users = User.find_by(:id => session[:user_id])
       erb :index
     end
   
   get '/recipe' do
     @recipes = Recipe.all
+    @users = User.find_by(:id => session[:user_id])
     erb :recipe #goes to recipe.erb
   end
   
   post '/recipe' do
-    @recipes = Recipe.create(:name => params[:name], :key_ingrediants => params[:key_ingrediants], :link => params[:link])
+    @recipes = Recipe.create(:user_id => params[:user_id], :name => params[:name], :key_ingrediants => params[:key_ingrediants], :link => params[:link])
     redirect '/recipe'
   end
+  
+  #   @randrec = @recipes.rand(0..@recipes.length)
   
   post '/sign-up' do
     user = User.create(:name => params[:name], :password => params[:password])
@@ -52,6 +58,11 @@ class ApplicationController < Sinatra::Base
     end
     
   end
+  
+#   get '/sign-in' do
+#     @signin_page = true
+#     redirect '/'
+#   end
   
   get '/sign-out' do
     session[:user_id] = nil

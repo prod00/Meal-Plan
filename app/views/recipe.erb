@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
  <head> 
-  <title>MEAL-PLAN</title>
+  <title>MEAL PLAN</title>
  </head>
  <body>
    <h2>RECIPE FOR TONIGHT</h2>
-
    <% @recipes.each do |recipe| %>
-   <p><%= recipe.name + " " %><%= recipe.key_ingrediants + " " %><%= recipe.link %></p>
-  <% end %>
+     <p><strong>Food:</strong> <%= recipe.name %></p>
+     <p><strong>Ingredients:</strong> <%= recipe.key_ingrediants %></p>
+     <p><strong>Website:</strong> <%= recipe.link %></p><br>
+   <% end %>
 
    <a href="/recipe">SKIP RECIPE</a>
    
-   <h1>ADD RECIPE</h1>
-   
+   <h2>ADD RECIPE</h2>
+  <% if session[:user_id] %>
    <form action='/recipe' method='POST'>
+     <input type="hidden" name="user_id" value="<%= @users.id %>">
      <input type="text" name="name" placeholder="Name">
-     <input type="text" name="key_ingrediants" placeholder="Ingredients">
+     <input type="text" name="key_ingrediants" placeholder="Ingredients not to repeat">
      <input type="text" name="link" placeholder="Link">
      <input type="submit" value="Submit">
    </form>
-   
+   <% end %>
      
   
  </body>

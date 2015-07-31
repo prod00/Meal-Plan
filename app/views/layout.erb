@@ -7,9 +7,7 @@
   <body> 
     <div class="container">
       <% if signed_in? %>
-        <p><%=current_user.name %> | <a href="/sign-out">SIGN OUT</a></p>
-      <% elsif !signed_in? && !@signin_page %>
-        <a href="/">Sign In</a>
+        <p><%= current_user.name %> | <a href="/sign-out">SIGN OUT</a></p>
       <% end %>
       
 
